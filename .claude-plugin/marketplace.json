@@ -8,9 +8,9 @@
   "plugins": [
     {
       "name": "amaranth10-claude-forge",
-      "source": "./amaranth10-claude-forge-v0.6.0",
+      "source": "./amaranth10-claude-forge-v0.6.1",
       "description": "Amaranth 10 통합 업무 프레임워크. 모듈 맥락 관리(GNB/LNB), 프로젝트 포트폴리오 관리, Google Sheets 연동, QA 시나리오를 제공합니다.",
-      "version": "0.6.0"
+      "version": "0.6.1"
     }
   ]
 }
