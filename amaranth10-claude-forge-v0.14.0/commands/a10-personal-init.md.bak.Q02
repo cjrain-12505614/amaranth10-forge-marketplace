@@ -1,21 +1,11 @@
 ---
 name: a10-personal-init
-description: "_개인/ 골격 + 자기 조직 폴더 4계층 자동 lookup (xlsx 13번 ID) + _index.md 자동 채움 + 직책 체크 시 팀트래킹 신설 + .gitignore"
-version: 0.3.0
+description: "_개인/ 골격 1회 초기화 (Beta 3인 첫 도입용 + Step 3.5 활성 9 모듈 sessions/ + .gitignore)"
 ---
 
-# /a10-personal-init 커맨드 (Phase Q-2 v0.3.0 확장)
+# /a10-personal-init 커맨드
 
-신규 사용자 첫 도입 시 워크스페이스에 `_개인/` 골격 + 자기 조직 폴더 4계층 자동 셋업.
-
-## v0.3.0 확장 (Q-12)
-
-기존 v0.2.0 (`_개인/` 빈 폴더 신설)에서 다음 4 단계 추가:
-
-1. **a10-people-index 호출** — 사용자 ID(xlsx 13번 컬럼) 기반 본인 매핑 조회
-2. **4계층 lookup** — `조직/{본부}/{Unit}/{Cell}/{이름}_{ID}/` 폴더 신설 (D9 변천사 일관)
-3. **_index.md 자동 채움** — frontmatter (ID·사번·이름·직급·소속·R&R) 기본 메타
-4. **직책 체크** — "하위 멤버 존재 + 상위 직책자" 식별 시 `_개인/팀트래킹/` 자동 신설
+신규 사용자(SBUnit Beta 3인 후 22명+) 첫 도입 시 워크스페이스에 `_개인/` 골격을 1회 명령으로 자동 생성합니다. ST Step 1.5 + 02-Bfix + 3.5 결정 일관 — Q4 (A) **빈 폴더만 생성** (`_current.md`는 본인 사용 시점에 자연 신설).
 
 ## 의존 SSoT
 
@@ -105,7 +95,7 @@ fi
 | 시점 | 사용 사례 |
 |------|------|
 | **Beta 3인 첫 도입** | SBUnit 3인 (차민수 + 2명) 첫 환경 셋업 — Step 11 진입 시 |
-| **신규 사용자 환경 셋업** | 정식 배포 후 신규 인원 |
+| **신규 사용자 환경 셋업** | SBUnit 22명 정식 배포 시 — Step 12 진입 후 신규 인원 |
 | **로컬 환경 재구축** | 디스크 재포맷·신규 PC 셋업 시 |
 
 ## 활성 모듈 변경 시 갱신 (R14 메모)
@@ -116,7 +106,7 @@ ST 결정으로 활성 모듈 추가/제거 시 본 명령 SKILL.md 9 모듈 목
 
 - `rules/personal-area-guard.md` (G7) — 개인 영역 git 가드 정책
 - `skills/a10-people-index/` (G8) — 사번 SSoT 참조 (douzone-forge 필요)
-- `skills/a10-personal-tracking/` (G9) — 관리자 트래킹 (사용자가 관리자인 경우)
+- `skills/a10-team-tracking/` (G9) — 관리자 트래킹 (사용자가 관리자인 경우)
 - `commands/a10-start-session.md` — 첫 세션 시작
 - `commands/a10-resume-session.md` — 세션 재개
 

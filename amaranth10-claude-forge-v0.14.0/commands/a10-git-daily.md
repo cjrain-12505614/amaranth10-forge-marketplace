@@ -3,7 +3,7 @@ name: a10-git-daily
 description: "Workspace_a10 레포의 전일 git 커밋을 수집해 douzone-forge PRJ/히스토리에 자동 반영"
 ---
 
-Workspace_a10의 17개 SBUnit 관리 레포에서 커밋을 수집하여 douzone-forge의
+Workspace_a10의 20개 SBUnit 관리 레포에서 커밋을 수집하여 douzone-forge의
 프로젝트 포트폴리오와 모듈 히스토리에 일자별 진행현황을 append한다.
 
 `a10-git-daily` 스킬의 전체 흐름을 따른다.

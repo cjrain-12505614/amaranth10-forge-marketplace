@@ -93,7 +93,7 @@ Frontmatter의 `jira_keys`, `prj_refs` 는 본문 정규식 추출 결과 — 3-
 ### STEP 6: 보고
 ```
 📥 Daily Digest 수집 완료 (2026-04-20)
-- 일일보고 작성자 18명 확인
+- SBUnit 22명 중 18명 보고 확인
 - 4명 미보고: 홍길동, 김철수, ...
 - JIRA 키 42건 / PRJ 참조 15건 추출
 - 캐시: douzone-forge/_업무산출물/보고서/일일보고/원본캐시/2026-04/ (18 files)

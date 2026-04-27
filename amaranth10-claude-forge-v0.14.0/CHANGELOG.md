@@ -1,5 +1,46 @@
 # Changelog
 
+## v0.15.0 (2026-04-27) — Phase Q-2 자동화 인프라
+
+### 배경
+
+Phase Q-1 종착 (구조 SSoT 정착) 직후 자비스 우산 지시서로 진입한 자동화 인프라 5 트랙. Q-1이 정착시킨 폴더 골격·ID 표준 위에 산출물 파일명 강제·폴더 README 표준·명령 4종·deliverables 폐기·트래킹 재설계를 얹어 Beta 사용자 즉시 운영 가능 상태 도달.
+
+### 추가 (✚)
+
+| 자산 | 유형 | 설명 |
+|---|---|---|
+| `rules/prj-filename-policy.md` (Q-10) | Rule | 산출물 파일명 표준 `YYYYMMDD-{주제}.md` (8자리 강제). 메타 화이트리스트 8종. 32 라인 |
+| `hooks/prj-filename-policy.sh` (Q-10) | Hook | PostToolUse Write/Edit. 적용 범위 한정(프로젝트/PRJ-*/01~06_*, Amaranth10/*/history·tasks). 위배 stderr 경고. 38 라인 |
+| `hooks/folder-purpose-check.sh` (Q-11) | Hook | PostToolUse. 신규 폴더 _README.md 부재 시 stderr 경고 + a10-folder-audit 안내. 24 라인 |
+| `skills/a10-folder-audit/SKILL.md` (Q-11) | Skill | 워크스페이스 폴더 표준 검증 + 부재·placeholder _README 식별 + 5섹션 충족 검사. 정기 점검 리포트 생성. 87 라인 |
+| `commands/a10-org-bootstrap.md` (Q-12) | Command | admin 첫 도입 시 1회 — Beta 사용자 부서 + 직속 상위 부서 폴더 신설 (사내 일괄 금지, 멱등성). 75 라인 |
+| `commands/a10-org-sync.md` (Q-12) | Command | xlsx 갱신 후 admin 동기화 — 변경 행만 검출, 자동 archive 안 함, 차민수 재확인 의무. 68 라인 |
+| `commands/a10-org-archive.md` (Q-12) | Command | 퇴사 인원 처리 — 조직/{...}/{이름_ID}/ → 조직/archived/{이름_ID}/ 이동 (재확인 2회, 민감 정보 분리). 87 라인 |
+| `skills/a10-personal-tracking/SKILL.md` (Q-14) | Skill | PT-02 G9 a10-team-tracking 폐기 후 재설계. 본인이 부하 직원 트래킹 노트 작성 (`_개인/팀트래킹/`). 직급 매칭 (xlsx 부서 계층 분석). 109 라인 |
+
+### 변경 (Δ)
+
+| 자산 | 변경 |
+|---|---|
+| `commands/a10-personal-init.md` (v0.2.0 → v0.3.0) | 4계층 lookup + _index.md 자동 채움 + 직책 체크 시 팀트래킹 자동 신설 (a10-people-index 호출 의존) |
+
+### 폐기 (✗)
+
+| 자산 | 처리 |
+|---|---|
+| `skills/a10-team-tracking/` (PT-02 G9) | `_archive/skills-a10-team-tracking-Q14/`로 이동. PT-02 G9 12 게이트 무효화. D6 결정 — a10-personal-tracking으로 재설계 |
+
+### 워크스페이스 영향
+
+- `deliverables/` 폐기 (Q-13) — 91 파일 → 1차 골격 분배 (AI전략·보고서 Q-3 이연 임시 보관)
+- `team-tracking/` → `_개인/팀트래킹/` (Q-14) — 6 관리자 폴더 이동
+- 인용 정정 sed 86 hits (메타 보호 4영역 표준)
+
+### 자비스 학습 #1 적용
+
+- 광역 sed 보호 표준 4영역 — `_archive/`·`*/99_archive/`·진행 중 사이클 메타·`*.bak.*`
+
 ## v0.14.0 (2026-04-26) — 공용/개인 경계 신규 영역 (PT-02 ALL PASS)
 
 ### 배경
@@ -74,6 +115,16 @@ PT-00 (1) + PT-01 (10) + PT-01.5 (9) + **PT-02 (12)** = **32/32**. ST 누적 112
 | hooks | 5 | 5 (변경 0) |
 | rules | 5 | **6** (+1 personal-area-guard) |
 | **총** | 81 | **85** (+4) |
+
+### Step 11 Beta 진입 의미
+
+본 v0.14.0은 **Step 11 Beta(3인) 진입을 위한 사실상 필수 트랙**. 4 신규 자산이 누락되면 다음 시나리오 미작동:
+- 신규 사용자가 `_개인/` 골격을 수동으로 만들어야 함 (G10 부재)
+- 사번 → 이름 자동 변환 부재 (G8 부재) → TASK·PRJ 담당자 메타 수동 입력
+- 관리자 트래킹 노트 표준 골격 부재 (G9 부재) → 일관성 ↓
+- `_개인/` 영역 git 누출 위험 (G7 부재)
+
+PT-03 (정합 검증)에서 RT-7~RT-10 4 시나리오 회귀 후 ST Step 11.5 (통합 정합성 검토) 진입 권고.
 
 ---
 
