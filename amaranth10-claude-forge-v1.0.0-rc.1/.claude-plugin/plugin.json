@@ -1,0 +1,66 @@
+{
+  "name": "amaranth10-claude-forge",
+  "version": "1.0.0-rc.1",
+  "description": "Amaranth 10 통합 업무 프레임워크. v1.0.0 RC — Beta 3인 합류 직전 안정화 게이트. Phase Q+R+R++S+T+U+V 누적 자산 (Skills 38·commands 46·hooks 9·rules 8·SSoT 6 신규). 격차 0 도달 (D-05 SBUnit 한정 표현 일반화 + xlsx 동적 lookup 표준 + frontend-design 매번 invoke 의무).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/db-migration-guard.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/structure-awareness.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/code-quality-reminder.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/security-auto-trigger.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/build-verify-reminder.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/prj-code-naming-check.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/output-location-policy.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/prj-filename-policy.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/folder-purpose-check.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/link-integrity-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
